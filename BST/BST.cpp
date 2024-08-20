@@ -1,15 +1,15 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-struct node {
-    node* left;
-    node* right;
-    int val;
-
-    node(int num) : left(NULL), right(NULL), val(num) {}
-};
-
 class BST {
+    struct node {
+        node* left;
+        node* right;
+        int val;
+    
+        node(int num) : left(NULL), right(NULL), val(num) {}
+    };
+
     node* root = NULL;
 
     int small(node* root) {
