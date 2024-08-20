@@ -7,7 +7,8 @@ Welcome to the Advanced Data Structures and Algorithms repository! This reposito
 | Data Structure   | Description                                                                 | Link                                        |
 |------------------|-----------------------------------------------------------------------------|---------------------------------------------|
 | **Binary Search Tree (BST)** | A binary tree where each node has at most two children. Useful for efficient searching, insertion, and deletion. | [BST Docs](BST/README.md)         |
-<!-- | **AVL Tree**           | A self-balancing binary search tree that maintains its balance using rotations. Ensures O(log n) height. | [AVL Tree Implementation](AVL/README.md)    |
+| **AVL Tree**           | A self-balancing binary search tree that maintains its balance using rotations. Ensures O(log n) height. | [AVL Tree Implementation](AVL/README.md)    |
+<!--
 | **Red-Black Tree**     | A balanced binary search tree with extra properties to ensure O(log n) operations. | [Red-Black Tree Implementation](RedBlackTree/README.md) |
 | **B-Trees**            | A self-balancing tree data structure that maintains sorted data and allows searches, sequential access, insertions, and deletions in logarithmic time. | [B-Trees Implementation](BTrees/README.md)  |
 | **Fibonacci Heap**     | A data structure for priority queue operations that allows for faster amortized time complexity for decrease-key and merge operations. | [Fibonacci Heap Implementation](FibonacciHeap/README.md) |
