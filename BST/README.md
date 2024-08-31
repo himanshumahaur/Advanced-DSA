@@ -63,7 +63,7 @@ int main() {
 
     // Erase a value and display traversals
     T.erase(2);
-    cout << "After erasing 2:" << endl;
+    cout << "After erasing:" << endl;
     T.preorder();  // Output: 4 1 6 5
     T.inorder();   // Output: 1 4 5 6
     T.postorder(); // Output: 1 5 6 4
