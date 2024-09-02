@@ -25,6 +25,40 @@ class RBT
 public:
     Node *root = NULL;
 
+    bool uisr(Node *&root) {
+        if(root->p && root->p->p) {
+            Node* p = root->p;
+            Node* gp = root->p->p;
+            if(gp->l==p && gp->r->c==RED) return true;
+            if(gp->l!=p && gp->l->c==RED) return true;
+        }
+        return false;
+    }
+
+    bool uisb(Node *&root) {
+        if(root->p && root->p->p) {
+            Node* p = root->p;
+            Node* gp = root->p->p;
+            if(gp->l==p && gp->r->c==BLACK) return true;
+            if(gp->l!=p && gp->l->c==BLACK) return true;
+        }
+        return false;
+    }
+
+    Node* tleft(Node* root) {
+        Node* nroot = root->r;
+        root->r = nroot->l;
+        nroot->l = root;
+        return nroot;
+    }
+
+    Node* tright(Node* root) {
+        Node* nroot = root->l;
+        root->l = nroot->r;
+        nroot->r = root;
+        return nroot;
+    }
+
     void insert(Node *&root, Node *p, int v)
     {
         if (root)
@@ -45,8 +79,41 @@ public:
         else
         {
             root = new Node(v, p);
+            
+            if(p==NULL) {
+                root->c = BLACK;
+                return;
+            }
+            else if(uisr(root)) {
+                Node* gp = root->p->p;
+                gp->c = RED;
+                gp->l->c = BLACK;
+                gp->r->c = BLACK;
+                return;
+            }
+            else if(uisb(root)) {
+                Node* p = root->p;
+                Node* gp = root->p->p;
 
-            // add fix here
+                if(gp->r!=p && p->r==root) {
+                    root->p = tleft(root->p);
+                }
+                else if(gp->l!=p && p->l==root) {
+                    root->p = tright(root->p);
+                }
+                else if(gp->r==p && p->r==root) {
+                    p->c = BLACK;
+                    gp->c = RED;
+                    root->p->p = tleft(root->p->p);
+                }
+                else if(gp->l==p && p->l==root) {
+                    p->c = BLACK;
+                    gp->c = RED;
+                    root->p->p = tright(root->p->p);
+                }
+                
+                return;
+            }
         }
     }
 
@@ -126,19 +193,25 @@ int main()
 {
     RBT T;
 
-    T.insert(10);
-    T.insert(5);
     T.insert(15);
+    T.insert(5);
     T.insert(1);
-    T.insert(8);
-    T.insert(12);
-    T.insert(17);
 
-    print2D(T.root);
+// B = 1
+// R = 0
+    // T.print();
+    cout << T.root->c << endl;
+    cout << T.root->l->c << endl;
 
-    Node *tmp = T.find(10);
-    if (tmp)
-        cout << tmp->p->v << endl;
+    // T.insert(10);
+    // T.insert(5);
+    // T.insert(15);
+    // T.insert(1);
+    // T.insert(8);
+    // T.insert(12);
+    // T.insert(17);
+
+    cout << endl << 0 << endl;
 
     return 0;
 }
