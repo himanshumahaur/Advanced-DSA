@@ -14,6 +14,8 @@ public:
     }
 
     void BFS() {
+        cout << "BFS: ";
+
         queue<int> q;
         vector<bool> vis(V, false);
 
@@ -26,20 +28,42 @@ public:
 
             while(!q.empty()) {
                 int cur = q.front();
+
+                cout << cur << " ";
+            
                 vis[cur] = true;
                 for(auto e:E[cur]) if(!vis[e]) q.push(e);
                 q.pop();
             }
         }
+
+        cout << endl;
+    }
+
+    void DFS(int cur, vector<bool> &vis) {
+        if(vis[cur]) return;
+        else vis[cur] = 1;
+
+        cout << cur << " ";
+
+        for(auto e:E[cur]) DFS(e, vis);
+    }
+
+    void DFS() {
+        cout << "DFS: ";
+        vector<bool> vis(V, false);
+        for(int i=0; i<V; i++) DFS(i, vis);
+        cout << endl;
     }
 };
 
 int main() {
-    vector<pair<int, int>> vec = {{1, 3}, {1, 2}, {2, 6}, {2, 4}, {2, 5}};
+    vector<pair<int, int>> vec = {{1, 2}, {1, 5}, {2, 4}, {4, 3}};
     
     Graph G(7, vec);
 
     G.BFS();
+    G.DFS();
 
     return 0;
 }
